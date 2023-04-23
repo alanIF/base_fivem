@@ -255,6 +255,38 @@ AddEventHandler("vrp_mecanico:servicos",function()
 	end
 end)
 -----------------------------------------------------------------------------------------------------------------------------------------
+-- Varredor
+-----------------------------------------------------------------------------------------------------------------------------------------
+RegisterServerEvent("vrp_varredor:servicos")
+AddEventHandler("vrp_varredor:servicos",function()
+    local source = source
+	local user_id = vRP.getUserId(source)
+	local identity = vRP.getUserIdentity(user_id)
+	if vRP.hasPermission(user_id,"varredor.permissao") then
+	
+		vRP.addUserGroup(user_id,"PaisanaVarredor")
+		vRP.removeUserGroup(user_id,"Varredor")
+		TriggerClientEvent("Notify",source,"sucesso","Você saiu de serviço.")
+		local policia = vRP.getUsersByPermission("varredor.permissao")
+	    local msg = "```Varredpr "..identity.name.." "..identity.firstname.." saiu de serviço .```"
+		SendWebhookMessage(webhookmecanico,msg)
+		
+		TriggerClientEvent('chatMessage',-1,"^7Varredpr ^1"..identity.name.." "..identity.firstname.."^7 saiu de serviço "..#policia.." Varredor em serviço")
+		
+	elseif vRP.hasPermission(user_id,"paisanavarredor.permissao") then
+	
+		vRP.addUserGroup(user_id,"Varredor")
+		vRP.removeUserGroup(user_id,"PaisanaVarredor")
+		TriggerClientEvent("Notify",source,"sucesso","Você entrou em serviço.")
+		local policia = vRP.getUsersByPermission("varredor.permissao")
+		local msg = "```Varredor "..identity.name.." "..identity.firstname.." entrou de serviço .```"
+		SendWebhookMessage(webhookmecanico,msg)
+		
+		TriggerClientEvent('chatMessage',-1,"^7Varredor ^1"..identity.name.." "..identity.firstname.."^7 entrou de serviço ."..#policia.." Varredor em serviço")
+		
+	end
+end)
+-----------------------------------------------------------------------------------------------------------------------------------------
 -- DETIDO
 -----------------------------------------------------------------------------------------------------------------------------------------
 RegisterCommand('detido',function(source,args,rawCommand)

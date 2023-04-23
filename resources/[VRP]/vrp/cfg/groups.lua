@@ -335,7 +335,22 @@ cfg.groups = {
 	["Carta"] = { },
 	["Porte"] = { },
 	["Lider"] = { },
-	
+	--------------------------------------------------GARI------------------------------------------------------------
+	["Varredor"] = {
+		_config = {
+			title = "Varredor",
+			gtype = "job"
+		},
+		"varredor.permissao",
+		"polpar.permissao"
+	},
+	["PaisanaVarredor"] ={
+		_config = {
+			title= "Paisana Varredor",
+			gtype="job"
+		},
+		"paisanavarredor.permissao"
+	},
 	
 	
 	

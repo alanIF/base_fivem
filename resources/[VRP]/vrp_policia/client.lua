@@ -290,7 +290,7 @@ Citizen.CreateThread(function()
 				DrawMarker(21,1691.59,2566.05,45.56,0,0,0,0,180.0,130.0,1.0,1.0,0.5,255,255,255,100,1,0,0,1)
 				if distance01 <= 1.2 then
 					drawTxt("PRESSIONE  ~b~E~w~  PARA CONCLUIR",4,0.5,0.93,0.50,255,255,255,180)
-					if IsControlJustPressed(0,38) then
+					if IsControlJustPressFed(0,38) then
 						reducaopenal = true
 						ResetPedMovementClipset(PlayerPedId(),0)
 						SetRunSprintMultiplierForPlayer(PlayerId(),1.0)
@@ -589,6 +589,17 @@ Citizen.CreateThread(function()
 			local slot2 = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),-30.02339553833,-1105.16796875,26.422353744507,true)
 			
 			
+			local varredor = GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),-99.265213012695,-1018.5391235352,27.273582458496,true)
+
+			if varredor <= 3.0  then
+			    
+				DrawText3D(-99.265213012695,-1018.5391235352,27.273582458496, "PRESSIONE  ~b~E~w~  PARA BATER O CARTAO ")
+				if IsControlJustPressed(0,38) then
+				    TriggerServerEvent("vrp_varredor:servicos")
+					PlaySoundFrontend(-1,"Enter_1st","GTAO_FM_Events_Soundset",false)
+				end
+			end
+
 			if hsp <= 3.0  then
 				DrawText3D(340.01400756836,-585.96514892578,28.791481018066, "PRESSIONE  ~b~E~w~  PARA INICIAR TRATAMENTO ")
 				if IsControlJustPressed(0,38) then
